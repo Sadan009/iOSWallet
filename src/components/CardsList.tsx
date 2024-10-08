@@ -1,4 +1,5 @@
 import { View, Image } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const cards = [
   require("../../assets/cards/Card 1.png"),
@@ -13,10 +14,24 @@ const cards = [
 ];
 
 const CardsList = () => {
+    const pan = Gesture.Pan()
+    //onStart will start working when you first touch it
+    .onStart(()=>{
+        console.log('Panning Started');
+    //onChange work eveytime our finger moves on the screen.
+    }).onChange((e)=>{
+        console.log('Panning: Scrolled on Y: ', e.changeY);
+    //onEnd works when you put your finger up from the screen / release the screen.
+    }).onEnd(()=>{
+        console.log('Panning Ended');
+    });
+
   return (
+    <GestureDetector gesture={pan}>
+
     <View style={{padding:10}}>
       {cards.map((card, index) => (
-        <Image
+          <Image
           key={index}
           source={card}
           style={{ width: "100%", 
@@ -25,8 +40,9 @@ const CardsList = () => {
             marginVertical: 5,
         }}
         />
-      ))}
+    ))}
     </View>
+    </GestureDetector>
   );
 };
 
