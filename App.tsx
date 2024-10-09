@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView ,View, StyleSheet } from "react-native";
 import CardsList from "./src/components/CardsList";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
